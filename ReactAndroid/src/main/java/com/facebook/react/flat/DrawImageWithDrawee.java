@@ -9,11 +9,6 @@
 
 package com.facebook.react.flat;
 
-import javax.annotation.Nullable;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
@@ -37,6 +32,11 @@ import com.facebook.react.views.image.ReactImageView;
 import com.facebook.react.views.imagehelper.ImageSource;
 import com.facebook.react.views.imagehelper.MultiSourceHelper;
 import com.facebook.react.views.imagehelper.MultiSourceHelper.MultiSourceResult;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * DrawImageWithDrawee is a DrawCommand that can draw a local or remote image.
@@ -267,7 +267,7 @@ import com.facebook.react.views.imagehelper.MultiSourceHelper.MultiSourceResult;
     if (shouldResize(source)) {
       final int width = (int) (getRight() - getLeft());
       final int height = (int) (getBottom() - getTop());
-      resizeOptions = new ResizeOptions(width, height);
+      resizeOptions = new ResizeOptions(width, height, 8 * 1024);
     }
 
     ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(source.getUri())
