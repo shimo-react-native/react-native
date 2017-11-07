@@ -79,7 +79,8 @@ import javax.annotation.Nullable;
               context,
               source.getString("uri"),
               source.getDouble("width"),
-              source.getDouble("height")));
+              source.getDouble("height"),
+              source.getDouble("maxBitmapSize")));
         }
       }
     }
@@ -267,7 +268,12 @@ import javax.annotation.Nullable;
     if (shouldResize(source)) {
       final int width = (int) (getRight() - getLeft());
       final int height = (int) (getBottom() - getTop());
-      resizeOptions = new ResizeOptions(width, height, 8 * 1024);
+      final float maxBitmapSize = (float) source.getmMaxBitmapSize();
+      if (maxBitmapSize > 0) {
+        resizeOptions = new ResizeOptions(width, height, maxBitmapSize);
+      } else {
+        resizeOptions = new ResizeOptions(width, height);
+      }
     }
 
     ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(source.getUri())

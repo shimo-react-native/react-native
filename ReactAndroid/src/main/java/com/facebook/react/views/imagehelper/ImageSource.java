@@ -9,12 +9,12 @@
 
 package com.facebook.react.views.imagehelper;
 
-import javax.annotation.Nullable;
-
 import android.content.Context;
 import android.net.Uri;
 
 import com.facebook.infer.annotation.Assertions;
+
+import javax.annotation.Nullable;
 
 /**
  * Class describing an image source (network URI or resource) and size.
@@ -24,15 +24,21 @@ public class ImageSource {
   private @Nullable Uri mUri;
   private String mSource;
   private double mSize;
+  private double mMaxBitmapSize;
   private boolean isResource;
 
-  public ImageSource(Context context, String source, double width, double height) {
+  public ImageSource(Context context, String source, double width, double height, double maxBitmapSize) {
     mSource = source;
     mSize = width * height;
+    mMaxBitmapSize = maxBitmapSize;
 
     // Important: we compute the URI here so that we don't need to hold a reference to the context,
     // potentially causing leaks.
     mUri = computeUri(context);
+  }
+
+  public ImageSource(Context context, String source, double width, double height) {
+    this(context, source, width, height, 0.0d);
   }
 
   public ImageSource(Context context, String source) {
@@ -58,6 +64,13 @@ public class ImageSource {
    */
   public double getSize() {
     return mSize;
+  }
+
+  /**
+   *  Get max bitmap size when in resize mode
+   */
+  public double getmMaxBitmapSize() {
+    return mMaxBitmapSize;
   }
 
   /**
