@@ -98,6 +98,8 @@ var Image = createReactClass({
       PropTypes.shape({
         uri: PropTypes.string,
         headers: PropTypes.objectOf(PropTypes.string),
+        scale: PropTypes.number,
+        maxBitmapSize: PropTypes.number,
       }),
       // Opaque type returned by require('./image.jpg')
       PropTypes.number,
@@ -107,6 +109,8 @@ var Image = createReactClass({
           uri: PropTypes.string,
           width: PropTypes.number,
           height: PropTypes.number,
+          scale: PropTypes.number,
+          maxBitmapSize: PropTypes.number,
         }))
     ]),
     /**
@@ -301,7 +305,7 @@ var Image = createReactClass({
       if (source.uri) {
         const {width, height} = source;
         style = flattenStyle([{width, height}, styles.base, this.props.style]);
-        sources = [{uri: source.uri}];
+        sources = [{uri: source.uri, scale: source.scale || 1, maxBitmapSize: source.maxBitmapSize || 0}];
       } else {
         style = flattenStyle([styles.base, this.props.style]);
         sources = source;

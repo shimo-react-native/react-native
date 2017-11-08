@@ -9,12 +9,6 @@
 
 package com.facebook.react.views.image;
 
-import javax.annotation.Nullable;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -32,8 +26,6 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import com.facebook.common.util.UriUtil;
-import com.facebook.react.common.build.ReactBuildConfig;
-import com.facebook.yoga.YogaConstants;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
@@ -54,15 +46,23 @@ import com.facebook.imagepipeline.request.Postprocessor;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.uimanager.FloatUtil;
+import com.facebook.react.common.build.ReactBuildConfig;
 import com.facebook.react.modules.fresco.ReactNetworkImageRequest;
+import com.facebook.react.uimanager.FloatUtil;
 import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.events.EventDispatcher;
 import com.facebook.react.views.imagehelper.ImageSource;
 import com.facebook.react.views.imagehelper.MultiSourceHelper;
-import com.facebook.react.views.imagehelper.ResourceDrawableIdHelper;
 import com.facebook.react.views.imagehelper.MultiSourceHelper.MultiSourceResult;
+import com.facebook.react.views.imagehelper.ResourceDrawableIdHelper;
+import com.facebook.yoga.YogaConstants;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Wrapper class around Fresco's GenericDraweeView, enabling persisting props across multiple view
@@ -289,7 +289,9 @@ public class ReactImageView extends GenericDraweeView {
       if (sources.size() == 1) {
         ReadableMap source = sources.getMap(0);
         String uri = source.getString("uri");
-        ImageSource imageSource = new ImageSource(getContext(), uri);
+        double maxBitmapSize = source.hasKey("maxBitmapSize") ? source.getDouble("maxBitmapSize") : 0;
+        int scale = source.hasKey("scale") ? source.getInt("scale") : 1;
+        ImageSource imageSource = new ImageSource(getContext(), uri, 0, 0, maxBitmapSize, scale);
         mSources.add(imageSource);
         if (Uri.EMPTY.equals(imageSource.getUri())) {
           warnImageSource(uri);
@@ -298,11 +300,15 @@ public class ReactImageView extends GenericDraweeView {
         for (int idx = 0; idx < sources.size(); idx++) {
           ReadableMap source = sources.getMap(idx);
           String uri = source.getString("uri");
+          double maxBitmapSize = source.hasKey("maxBitmapSize") ? source.getDouble("maxBitmapSize") : 0;
+          int scale = source.hasKey("scale") ? source.getInt("scale") : 1;
           ImageSource imageSource = new ImageSource(
               getContext(),
               uri,
               source.getDouble("width"),
-              source.getDouble("height"));
+              source.getDouble("height"),
+              maxBitmapSize,
+              scale);
           mSources.add(imageSource);
           if (Uri.EMPTY.equals(imageSource.getUri())) {
             warnImageSource(uri);
@@ -405,8 +411,10 @@ public class ReactImageView extends GenericDraweeView {
     } else if (mIterativeBoxBlurPostProcessor != null) {
       postprocessor = mIterativeBoxBlurPostProcessor;
     }
-
-    ResizeOptions resizeOptions = doResize ? new ResizeOptions(getWidth(), getHeight()) : null;
+    ResizeOptions resizeOptions = null;
+    if (doResize) {
+      resizeOptions = new ResizeOptions(getWidth() * mImageSource.getScale(), getHeight() * mImageSource.getScale(), (float) mImageSource.getMaxBitmapSize());
+    }
 
     ImageRequestBuilder imageRequestBuilder = ImageRequestBuilder.newBuilderWithSource(mImageSource.getUri())
         .setPostprocessor(postprocessor)

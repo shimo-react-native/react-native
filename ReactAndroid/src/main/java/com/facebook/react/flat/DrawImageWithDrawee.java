@@ -71,16 +71,22 @@ import javax.annotation.Nullable;
       // Optimize for the case where we have just one uri, case in which we don't need the sizes
       if (sources.size() == 1) {
         ReadableMap source = sources.getMap(0);
-        mSources.add(new ImageSource(context, source.getString("uri")));
+        double maxBitmapSize = source.hasKey("maxBitmapSize") ? source.getDouble("maxBitmapSize") : 0;
+        mSources.add(new ImageSource(context,
+                source.getString("uri"),
+                0,
+                0,
+                maxBitmapSize));
       } else {
         for (int idx = 0; idx < sources.size(); idx++) {
           ReadableMap source = sources.getMap(idx);
+          double maxBitmapSize = source.hasKey("maxBitmapSize") ? source.getDouble("maxBitmapSize") : 0;
           mSources.add(new ImageSource(
               context,
               source.getString("uri"),
               source.getDouble("width"),
               source.getDouble("height"),
-              source.getDouble("maxBitmapSize")));
+              maxBitmapSize));
         }
       }
     }
@@ -268,7 +274,7 @@ import javax.annotation.Nullable;
     if (shouldResize(source)) {
       final int width = (int) (getRight() - getLeft());
       final int height = (int) (getBottom() - getTop());
-      final float maxBitmapSize = (float) source.getmMaxBitmapSize();
+      final float maxBitmapSize = (float) source.getMaxBitmapSize();
       if (maxBitmapSize > 0) {
         resizeOptions = new ResizeOptions(width, height, maxBitmapSize);
       } else {

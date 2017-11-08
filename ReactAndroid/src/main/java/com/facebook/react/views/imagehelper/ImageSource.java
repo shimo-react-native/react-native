@@ -25,16 +25,22 @@ public class ImageSource {
   private String mSource;
   private double mSize;
   private double mMaxBitmapSize;
+  private int mScale;
   private boolean isResource;
 
-  public ImageSource(Context context, String source, double width, double height, double maxBitmapSize) {
+  public ImageSource(Context context, String source, double width, double height, double maxBitmapSize, int scale) {
     mSource = source;
     mSize = width * height;
     mMaxBitmapSize = maxBitmapSize;
+    mScale = scale;
 
     // Important: we compute the URI here so that we don't need to hold a reference to the context,
     // potentially causing leaks.
     mUri = computeUri(context);
+  }
+
+  public ImageSource(Context context, String source, double width, double height, double maxBitmapSize) {
+    this(context, source, width, height, 0.0d, 1);
   }
 
   public ImageSource(Context context, String source, double width, double height) {
@@ -69,8 +75,15 @@ public class ImageSource {
   /**
    *  Get max bitmap size when in resize mode
    */
-  public double getmMaxBitmapSize() {
+  public double getMaxBitmapSize() {
     return mMaxBitmapSize;
+  }
+
+  /**
+   *  Get scale when in resize mode
+   */
+  public int getScale() {
+    return mScale;
   }
 
   /**
