@@ -9,6 +9,11 @@
 
 package com.facebook.react.flat;
 
+import javax.annotation.Nullable;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
@@ -32,11 +37,6 @@ import com.facebook.react.views.image.ReactImageView;
 import com.facebook.react.views.imagehelper.ImageSource;
 import com.facebook.react.views.imagehelper.MultiSourceHelper;
 import com.facebook.react.views.imagehelper.MultiSourceHelper.MultiSourceResult;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.annotation.Nullable;
 
 /**
  * DrawImageWithDrawee is a DrawCommand that can draw a local or remote image.
@@ -71,22 +71,15 @@ import javax.annotation.Nullable;
       // Optimize for the case where we have just one uri, case in which we don't need the sizes
       if (sources.size() == 1) {
         ReadableMap source = sources.getMap(0);
-        double maxBitmapSize = source.hasKey("maxBitmapSize") ? source.getDouble("maxBitmapSize") : 0;
-        mSources.add(new ImageSource(context,
-                source.getString("uri"),
-                0,
-                0,
-                maxBitmapSize));
+        mSources.add(new ImageSource(context, source.getString("uri")));
       } else {
         for (int idx = 0; idx < sources.size(); idx++) {
           ReadableMap source = sources.getMap(idx);
-          double maxBitmapSize = source.hasKey("maxBitmapSize") ? source.getDouble("maxBitmapSize") : 0;
           mSources.add(new ImageSource(
               context,
               source.getString("uri"),
               source.getDouble("width"),
-              source.getDouble("height"),
-              maxBitmapSize));
+              source.getDouble("height")));
         }
       }
     }
@@ -274,12 +267,7 @@ import javax.annotation.Nullable;
     if (shouldResize(source)) {
       final int width = (int) (getRight() - getLeft());
       final int height = (int) (getBottom() - getTop());
-      final float maxBitmapSize = (float) source.getMaxBitmapSize();
-      if (maxBitmapSize > 0) {
-        resizeOptions = new ResizeOptions(width, height, maxBitmapSize);
-      } else {
-        resizeOptions = new ResizeOptions(width, height);
-      }
+      resizeOptions = new ResizeOptions(width, height);
     }
 
     ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(source.getUri())
