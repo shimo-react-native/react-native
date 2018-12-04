@@ -47,7 +47,7 @@ import javax.inject.Provider;
     HeadlessJsTaskSupportModule.class,
     SourceCodeModule.class,
     Timing.class,
-    UIManagerModule.class,
+//    UIManagerModule.class,
   }
 )
 /* package */ class CoreModulesPackage extends LazyReactPackage implements ReactPackageLogger {
@@ -120,14 +120,14 @@ import javax.inject.Provider;
                 return new Timing(reactContext, mReactInstanceManager.getDevSupportManager());
               }
             }),
-        ModuleSpec.nativeModuleSpec(
-            UIManagerModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return createUIManager(reactContext);
-              }
-            }),
+//        ModuleSpec.nativeModuleSpec(
+//            UIManagerModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return createUIManager(reactContext);
+//              }
+//            }),
         ModuleSpec.nativeModuleSpec(
             DeviceInfoModule.class,
             new Provider<NativeModule>() {

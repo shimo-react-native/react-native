@@ -73,30 +73,30 @@ import javax.inject.Provider;
  * Package defining basic modules and view managers.
  */
 @ReactModuleList(nativeModules = {
-  AccessibilityInfoModule.class,
+//  AccessibilityInfoModule.class,
   AppStateModule.class,
   BlobModule.class,
   FileReaderModule.class,
   AsyncStorageModule.class,
   CameraRollManager.class,
   ClipboardModule.class,
-  DatePickerDialogModule.class,
-  DialogModule.class,
-  FrescoModule.class,
-  I18nManagerModule.class,
-  ImageEditingManager.class,
-  ImageLoaderModule.class,
+//  DatePickerDialogModule.class,
+//  DialogModule.class,
+//  FrescoModule.class,
+//  I18nManagerModule.class,
+//  ImageEditingManager.class,
+//  ImageLoaderModule.class,
   ImageStoreManager.class,
-  IntentModule.class,
+//  IntentModule.class,
   LocationModule.class,
-  NativeAnimatedModule.class,
+//  NativeAnimatedModule.class,
   NetworkingModule.class,
   NetInfoModule.class,
   PermissionsModule.class,
-  ShareModule.class,
-  StatusBarModule.class,
-  TimePickerDialogModule.class,
-  ToastModule.class,
+//  ShareModule.class,
+//  StatusBarModule.class,
+//  TimePickerDialogModule.class,
+//  ToastModule.class,
   VibrationModule.class,
   WebSocketModule.class,
 
@@ -118,14 +118,14 @@ public class MainReactPackage extends LazyReactPackage {
   @Override
   public List<ModuleSpec> getNativeModules(final ReactApplicationContext context) {
     return Arrays.asList(
-        ModuleSpec.nativeModuleSpec(
-            AccessibilityInfoModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new AccessibilityInfoModule(context);
-              }
-            }),
+//        ModuleSpec.nativeModuleSpec(
+//            AccessibilityInfoModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new AccessibilityInfoModule(context);
+//              }
+//            }),
         ModuleSpec.nativeModuleSpec(
             AppStateModule.class,
             new Provider<NativeModule>() {
@@ -174,55 +174,55 @@ public class MainReactPackage extends LazyReactPackage {
                 return new ClipboardModule(context);
               }
             }),
-        ModuleSpec.nativeModuleSpec(
-            DatePickerDialogModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new DatePickerDialogModule(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            DialogModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new DialogModule(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            FrescoModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new FrescoModule(
-                    context, true, mConfig != null ? mConfig.getFrescoConfig() : null);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            I18nManagerModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new I18nManagerModule(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            ImageEditingManager.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new ImageEditingManager(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            ImageLoaderModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new ImageLoaderModule(context);
-              }
-            }),
+//        ModuleSpec.nativeModuleSpec(
+//            DatePickerDialogModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new DatePickerDialogModule(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            DialogModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new DialogModule(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            FrescoModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new FrescoModule(
+//                    context, true, mConfig != null ? mConfig.getFrescoConfig() : null);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            I18nManagerModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new I18nManagerModule(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            ImageEditingManager.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new ImageEditingManager(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            ImageLoaderModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new ImageLoaderModule(context);
+//              }
+//            }),
         ModuleSpec.nativeModuleSpec(
             ImageStoreManager.class,
             new Provider<NativeModule>() {
@@ -231,14 +231,14 @@ public class MainReactPackage extends LazyReactPackage {
                 return new ImageStoreManager(context);
               }
             }),
-        ModuleSpec.nativeModuleSpec(
-            IntentModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new IntentModule(context);
-              }
-            }),
+//        ModuleSpec.nativeModuleSpec(
+//            IntentModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new IntentModule(context);
+//              }
+//            }),
         ModuleSpec.nativeModuleSpec(
             LocationModule.class,
             new Provider<NativeModule>() {
@@ -247,14 +247,14 @@ public class MainReactPackage extends LazyReactPackage {
                 return new LocationModule(context);
               }
             }),
-        ModuleSpec.nativeModuleSpec(
-            NativeAnimatedModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new NativeAnimatedModule(context);
-              }
-            }),
+//        ModuleSpec.nativeModuleSpec(
+//            NativeAnimatedModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new NativeAnimatedModule(context);
+//              }
+//            }),
         ModuleSpec.nativeModuleSpec(
             NetworkingModule.class,
             new Provider<NativeModule>() {
@@ -279,38 +279,38 @@ public class MainReactPackage extends LazyReactPackage {
                 return new PermissionsModule(context);
               }
             }),
-        ModuleSpec.nativeModuleSpec(
-            ShareModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new ShareModule(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            StatusBarModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new StatusBarModule(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            TimePickerDialogModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new TimePickerDialogModule(context);
-              }
-            }),
-        ModuleSpec.nativeModuleSpec(
-            ToastModule.class,
-            new Provider<NativeModule>() {
-              @Override
-              public NativeModule get() {
-                return new ToastModule(context);
-              }
-            }),
+//        ModuleSpec.nativeModuleSpec(
+//            ShareModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new ShareModule(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            StatusBarModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new StatusBarModule(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            TimePickerDialogModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new TimePickerDialogModule(context);
+//              }
+//            }),
+//        ModuleSpec.nativeModuleSpec(
+//            ToastModule.class,
+//            new Provider<NativeModule>() {
+//              @Override
+//              public NativeModule get() {
+//                return new ToastModule(context);
+//              }
+//            }),
         ModuleSpec.nativeModuleSpec(
             VibrationModule.class,
             new Provider<NativeModule>() {
@@ -333,34 +333,34 @@ public class MainReactPackage extends LazyReactPackage {
   public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
     List<ViewManager> viewManagers = new ArrayList<>();
 
-    viewManagers.add(ARTRenderableViewManager.createARTGroupViewManager());
-    viewManagers.add(ARTRenderableViewManager.createARTShapeViewManager());
-    viewManagers.add(ARTRenderableViewManager.createARTTextViewManager());
-    viewManagers.add(new ReactCheckBoxManager());
-    viewManagers.add(new ReactDialogPickerManager());
-    viewManagers.add(new ReactDrawerLayoutManager());
-    viewManagers.add(new ReactDropdownPickerManager());
-    viewManagers.add(new ReactHorizontalScrollViewManager());
-    viewManagers.add(new ReactHorizontalScrollContainerViewManager());
-    viewManagers.add(new ReactProgressBarViewManager());
-    viewManagers.add(new ReactScrollViewManager());
-    viewManagers.add(new ReactSliderManager());
-    viewManagers.add(new ReactSwitchManager());
-    viewManagers.add(new ReactToolbarManager());
-    viewManagers.add(new ReactWebViewManager());
-    viewManagers.add(new SwipeRefreshLayoutManager());
-
-    // Native equivalents
-    viewManagers.add(new ARTSurfaceViewManager());
-    viewManagers.add(new FrescoBasedReactTextInlineImageViewManager());
-    viewManagers.add(new ReactImageManager());
-    viewManagers.add(new ReactModalHostManager());
-    viewManagers.add(new ReactRawTextManager());
-    viewManagers.add(new ReactTextInputManager());
-    viewManagers.add(new ReactTextViewManager());
-    viewManagers.add(new ReactViewManager());
-    viewManagers.add(new ReactViewPagerManager());
-    viewManagers.add(new ReactVirtualTextViewManager());
+//    viewManagers.add(ARTRenderableViewManager.createARTGroupViewManager());
+//    viewManagers.add(ARTRenderableViewManager.createARTShapeViewManager());
+//    viewManagers.add(ARTRenderableViewManager.createARTTextViewManager());
+//    viewManagers.add(new ReactCheckBoxManager());
+//    viewManagers.add(new ReactDialogPickerManager());
+//    viewManagers.add(new ReactDrawerLayoutManager());
+//    viewManagers.add(new ReactDropdownPickerManager());
+//    viewManagers.add(new ReactHorizontalScrollViewManager());
+//    viewManagers.add(new ReactHorizontalScrollContainerViewManager());
+//    viewManagers.add(new ReactProgressBarViewManager());
+//    viewManagers.add(new ReactScrollViewManager());
+//    viewManagers.add(new ReactSliderManager());
+//    viewManagers.add(new ReactSwitchManager());
+//    viewManagers.add(new ReactToolbarManager());
+//    viewManagers.add(new ReactWebViewManager());
+//    viewManagers.add(new SwipeRefreshLayoutManager());
+//
+//    // Native equivalents
+//    viewManagers.add(new ARTSurfaceViewManager());
+//    viewManagers.add(new FrescoBasedReactTextInlineImageViewManager());
+//    viewManagers.add(new ReactImageManager());
+//    viewManagers.add(new ReactModalHostManager());
+//    viewManagers.add(new ReactRawTextManager());
+//    viewManagers.add(new ReactTextInputManager());
+//    viewManagers.add(new ReactTextViewManager());
+//    viewManagers.add(new ReactViewManager());
+//    viewManagers.add(new ReactViewPagerManager());
+//    viewManagers.add(new ReactVirtualTextViewManager());
 
     return viewManagers;
   }
