@@ -34,7 +34,6 @@ Pod::Spec.new do |s|
   s.license                 = package["license"]
   s.author                  = "Facebook"
   s.source                  = source
-  s.default_subspec         = "Core"
   s.requires_arc            = true
   s.platforms               = { :ios => "8.0", :tvos => "9.2" }
   s.pod_target_xcconfig     = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++14" }

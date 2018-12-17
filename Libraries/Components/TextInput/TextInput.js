@@ -236,6 +236,10 @@ const TextInput = createReactClass({
      */
     editable: PropTypes.bool,
     /**
+     * If `true`, disable Touchable . The default value is `false`.
+     */
+    disableTouchable: PropTypes.bool,
+    /**
      * Determines which keyboard to open, e.g.`numeric`.
      *
      * The following values work across platforms:
@@ -603,7 +607,7 @@ const TextInput = createReactClass({
   },
   getDefaultProps(): Object {
     return {
-      allowFontScaling: true,
+      allowFontScaling: true
     };
   },
   /**
@@ -850,7 +854,7 @@ const TextInput = createReactClass({
   },
 
   _onPress: function(event: Event) {
-    if (this.props.editable || this.props.editable === undefined) {
+    if (!this.props.disableTouchable && ( this.props.editable || this.props.editable === undefined )) {
       this.focus();
     }
   },

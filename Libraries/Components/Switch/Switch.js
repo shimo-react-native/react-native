@@ -21,6 +21,7 @@ const ViewPropTypes = require('ViewPropTypes');
 
 var createReactClass = require('create-react-class');
 var requireNativeComponent = require('requireNativeComponent');
+var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 
 type DefaultProps = {
   value: boolean,
@@ -97,6 +98,7 @@ var Switch = createReactClass({
      * error delete this comment and run Flow. */
     this.props.onChange && this.props.onChange(event);
     this.props.onValueChange && this.props.onValueChange(event.nativeEvent.value);
+    RCTDeviceEventEmitter.emit('onSwitchChange', event);
   },
 
   render: function() {
